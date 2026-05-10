@@ -113,7 +113,7 @@ export default function HeroSection() {
               <br />
               at the pace of
               <br />
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-accentblue to-accentpurple drop-shadow-[0_0_15px_rgba(0,229,255,0.3)]">Nigerian business.</span>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-accentblue to-accentpurple">Nigerian business.</span>
             </h1>
           </div>
 
@@ -173,7 +173,7 @@ export default function HeroSection() {
                     opacity: 0,
                   }}
                 >
-                  <p className="font-serif font-bold text-[36px] md:text-[48px] leading-none text-transparent bg-clip-text bg-gradient-to-r from-accentblue to-accentpurple drop-shadow-[0_2px_10px_rgba(0,229,255,0.3)]">
+                  <p className="font-serif font-bold text-[36px] md:text-[48px] leading-none text-transparent bg-clip-text bg-gradient-to-r from-accentblue to-accentpurple">
                     {metric.value}
                   </p>
                   <p className="mt-2.5 font-sans text-[11.5px] md:text-[12.5px] uppercase tracking-[0.16em] md:tracking-[0.18em] text-textmuted font-medium">
