@@ -88,7 +88,7 @@
   }
 
   .section-padding {
-    @apply py-[72px] md:py-[92px] lg:py-[124px];
+    @apply py-[60px] md:py-[92px] lg:py-[124px];
   }
 
   .brand-rule {

@@ -83,21 +83,22 @@ export default function HeroSection() {
       <div className="absolute bottom-[22%] right-0 w-[15%] h-px bg-gradient-to-l from-navy/25 via-navy/10 to-transparent pointer-events-none hidden md:block" aria-hidden="true" />
 
       {/* ===== MAIN CONTENT ===== */}
-      <div className="container-brahm relative z-10 flex min-h-[calc(100vh-76px)] flex-col justify-center py-20 md:py-24 lg:py-28">
-        <div className="max-w-[920px] pt-12 md:pt-0">
+      <div className="container-brahm relative z-10 flex min-h-[calc(100vh-76px)] flex-col justify-center py-16 md:py-24 lg:py-28">
+        <div className="max-w-[920px] pt-6 md:pt-0">
 
           {/* Eyebrow chip */}
           <div
             className="opacity-0"
             style={{ animation: 'hero-fade-in 700ms cubic-bezier(0.16, 1, 0.3, 1) 200ms forwards' }}
           >
-            <div className="mb-9 inline-flex items-center gap-3 rounded-full border border-navy/15 bg-paper/70 px-4 py-2 backdrop-blur-sm shadow-xs">
+            <div className="mb-8 md:mb-9 inline-flex items-center gap-2.5 rounded-full border border-navy/15 bg-paper/70 px-3.5 py-1.5 md:px-4 md:py-2 backdrop-blur-sm shadow-xs">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-navy/40" />
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-navy" />
               </span>
-              <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.28em] text-navy/85">
-                Private Credit · Structured Lending · Advisory
+              <p className="font-sans text-[10px] md:text-[11px] font-semibold uppercase tracking-[0.22em] md:tracking-[0.28em] text-navy/85">
+                <span className="hidden sm:inline">Private Credit · Structured Lending · Advisory</span>
+                <span className="sm:hidden">Private Credit · Advisory</span>
               </p>
             </div>
           </div>
@@ -128,12 +129,12 @@ export default function HeroSection() {
 
           {/* CTAs */}
           <div
-            className="opacity-0 mt-11 flex flex-col gap-3 sm:flex-row"
+            className="opacity-0 mt-10 md:mt-11 flex flex-col gap-3 sm:flex-row sm:items-start"
             style={{ animation: 'hero-fade-in 700ms cubic-bezier(0.16, 1, 0.3, 1) 720ms forwards' }}
           >
             <button
               onClick={() => scrollTo('services')}
-              className="group inline-flex min-h-[56px] items-center justify-center rounded-full bg-navy px-8 py-3.5 font-sans text-[15px] font-semibold text-white shadow-brand transition-all duration-300 hover:bg-deepnavy hover:-translate-y-1 hover:shadow-hero active:translate-y-0 focus-visible:ring-2 focus-visible:ring-navy/60 focus-visible:ring-offset-2 focus-visible:ring-offset-cream"
+              className="group inline-flex w-full sm:w-auto min-h-[54px] sm:min-h-[56px] items-center justify-center rounded-full bg-navy px-7 sm:px-8 py-3.5 font-sans text-[15px] font-semibold text-white shadow-brand transition-all duration-300 hover:bg-deepnavy sm:hover:-translate-y-1 hover:shadow-hero active:translate-y-0 focus-visible:ring-2 focus-visible:ring-navy/60 focus-visible:ring-offset-2 focus-visible:ring-offset-cream"
             >
               Explore Services
               <svg
@@ -145,7 +146,7 @@ export default function HeroSection() {
             </button>
             <button
               onClick={() => scrollTo('contact')}
-              className="group inline-flex min-h-[56px] items-center justify-center rounded-full border border-navy/20 bg-paper/60 backdrop-blur-sm px-8 py-3.5 font-sans text-[15px] font-semibold text-charcoal transition-all duration-300 hover:border-navy/45 hover:bg-paper active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-navy/60 focus-visible:ring-offset-2 focus-visible:ring-offset-cream"
+              className="group inline-flex w-full sm:w-auto min-h-[54px] sm:min-h-[56px] items-center justify-center rounded-full border border-navy/20 bg-paper/60 backdrop-blur-sm px-7 sm:px-8 py-3.5 font-sans text-[15px] font-semibold text-charcoal transition-all duration-300 hover:border-navy/45 hover:bg-paper active:scale-[0.98] focus-visible:ring-2 focus-visible:ring-navy/60 focus-visible:ring-offset-2 focus-visible:ring-offset-cream"
             >
               Discuss Financing
               <svg
@@ -159,23 +160,23 @@ export default function HeroSection() {
 
           {/* Stats row */}
           <div
-            className="opacity-0 mt-20 md:mt-24"
+            className="opacity-0 mt-14 md:mt-24"
             style={{ animation: 'hero-fade-in 700ms cubic-bezier(0.16, 1, 0.3, 1) 900ms forwards' }}
           >
             <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-line border-y border-line">
               {trustMetrics.map((metric, index) => (
                 <div
                   key={metric.label}
-                  className="px-6 py-7 sm:px-8"
+                  className="px-1 py-5 sm:px-8 sm:py-7"
                   style={{
                     animation: `hero-fade-in 600ms cubic-bezier(0.16, 1, 0.3, 1) ${1050 + index * 130}ms forwards`,
                     opacity: 0,
                   }}
                 >
-                  <p className="font-serif text-[40px] md:text-[48px] leading-none text-navy">
+                  <p className="font-serif text-[36px] md:text-[48px] leading-none text-navy">
                     {metric.value}
                   </p>
-                  <p className="mt-3 font-sans text-[12.5px] uppercase tracking-[0.18em] text-charcoal/55 font-medium">
+                  <p className="mt-2.5 font-sans text-[11.5px] md:text-[12.5px] uppercase tracking-[0.16em] md:tracking-[0.18em] text-charcoal/55 font-medium">
                     {metric.label}
                   </p>
                 </div>
@@ -185,9 +186,9 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
+      {/* Scroll indicator (desktop only) */}
       <div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 opacity-0 transition-opacity duration-500 z-20"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-3 opacity-0 transition-opacity duration-500 z-20"
         style={{
           animation: 'indicator-fade-in 500ms ease 1500ms forwards',
           opacity: scrollIndicatorHidden ? 0 : undefined,

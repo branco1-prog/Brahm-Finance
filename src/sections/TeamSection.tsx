@@ -21,7 +21,7 @@ export default function TeamSection() {
           <h2 className="text-charcoal">Led by experienced operators.</h2>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
+        <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-start">
           {/* Executive Profile Card */}
           <div
             ref={photoRef}
@@ -94,11 +94,11 @@ export default function TeamSection() {
               Founder &amp; Chief Executive Officer
             </p>
 
-            <div className="mt-8 max-w-[680px] space-y-5 border-l-2 border-navy/25 pl-6 transition-colors duration-500 hover:border-navy/45">
-              <p className="font-sans text-[17.5px] text-charcoal/76 leading-[1.75]">
+            <div className="mt-7 md:mt-8 max-w-[680px] space-y-4 md:space-y-5 border-l-2 border-navy/25 pl-4 md:pl-6 transition-colors duration-500 hover:border-navy/45">
+              <p className="font-sans text-[16px] md:text-[17.5px] text-charcoal/76 leading-[1.7] md:leading-[1.75]">
                 Oladipo founded Brahm Finance to bring institutional-grade credit discipline to underserved corners of Nigeria's lending market. With over a decade in financial services, he leads strategy across bridge financing, structured credit, and bespoke working-capital solutions.
               </p>
-              <p className="font-sans text-[17.5px] text-charcoal/76 leading-[1.75]">
+              <p className="font-sans text-[16px] md:text-[17.5px] text-charcoal/76 leading-[1.7] md:leading-[1.75]">
                 His earlier career was built in investment banking — specialising in capital raising and debt restructuring at Chapel Hill Advisory Partners, Greenwich Merchant Bank, and Norrenberger Advisory Partners. He has originated and executed Commercial Papers, Private Notes, and Trade &amp; Structured Finance deals across Financial Services, Infrastructure, FMCG, Agriculture, Healthcare, and Renewable Energy.
               </p>
             </div>

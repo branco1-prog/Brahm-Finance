@@ -157,7 +157,7 @@ export default function TestimonialsSection() {
           </div>
 
           <div
-            className="max-w-[820px] mx-auto relative select-none rounded-3xl border border-line bg-paper p-8 md:p-14 shadow-card"
+            className="max-w-[820px] mx-auto relative select-none rounded-3xl border border-line bg-paper p-6 sm:p-8 md:p-14 shadow-card"
             onPointerDown={handlePointerDown}
             onPointerUp={handlePointerUp}
             onMouseEnter={() => setIsPaused(true)}
@@ -173,7 +173,7 @@ export default function TestimonialsSection() {
             </div>
 
             {/* Slides */}
-            <div className="relative min-h-[220px] md:min-h-[180px]">
+            <div className="relative min-h-[300px] sm:min-h-[260px] md:min-h-[200px]">
               {testimonials.map((testimonial, index) => {
                 const isActive = index === activeIndex;
                 const style = getSlideStyle(index);
@@ -191,10 +191,10 @@ export default function TestimonialsSection() {
                       pointerEvents: isActive ? 'auto' : 'none',
                     }}
                   >
-                    <blockquote className="font-serif text-[22px] md:text-[28px] text-charcoal leading-[1.45] text-center">
+                    <blockquote className="font-serif text-[19px] sm:text-[22px] md:text-[28px] text-charcoal leading-[1.5] md:leading-[1.45] text-center">
                       {testimonial.quote}
                     </blockquote>
-                    <p className="font-sans text-[14px] uppercase tracking-[0.2em] text-navy/80 font-semibold text-center mt-8">
+                    <p className="font-sans text-[12px] md:text-[14px] uppercase tracking-[0.18em] md:tracking-[0.2em] text-navy/80 font-semibold text-center mt-6 md:mt-8 px-2">
                       {testimonial.author}
                     </p>
                   </div>

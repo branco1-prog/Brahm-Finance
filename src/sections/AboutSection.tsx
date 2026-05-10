@@ -33,13 +33,13 @@ export default function AboutSection() {
             className={`w-full lg:w-1/2 ${bodyVisible ? 'scroll-reveal revealed' : 'scroll-reveal'}`}
             style={{ transitionDelay: '150ms' }}
           >
-            <p className="font-sans text-[18px] text-charcoal/76 leading-[1.75] mb-5">
+            <p className="font-sans text-[16.5px] md:text-[18px] text-charcoal/76 leading-[1.7] md:leading-[1.75] mb-5">
               Brahm Finance is a private credit and lending firm built to close the funding gap that holds back individuals, SMEs, and mid-market businesses across Nigeria. We provide structured, timely capital for working-capital needs, expansion plans, and short-term liquidity.
             </p>
-            <p className="font-sans text-[18px] text-charcoal/76 leading-[1.75] mb-5">
+            <p className="font-sans text-[16.5px] md:text-[18px] text-charcoal/76 leading-[1.7] md:leading-[1.75] mb-5">
               Our approach pairs the speed founders actually need with the credit discipline institutions expect. We move quickly, but never carelessly — every facility is structured around real cash flow, real collateral, and a clear path to repayment.
             </p>
-            <p className="font-sans text-[18px] text-charcoal/76 leading-[1.75]">
+            <p className="font-sans text-[16.5px] md:text-[18px] text-charcoal/76 leading-[1.7] md:leading-[1.75]">
               Backed by deep capital-markets experience, we are building a lending platform clients return to — anchored on integrity, executed with rigor, and measured by the impact our capital unlocks.
             </p>
             <div className="grid gap-4 sm:grid-cols-2 mt-9">
