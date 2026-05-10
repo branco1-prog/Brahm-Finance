@@ -1,8 +1,6 @@
 import { useScrollReveal } from '@/hooks/useScrollReveal';
-import StatCounter from '@/components/StatCounter';
 
 export default function AboutSection() {
-  const { ref: statsRef, isVisible: statsVisible } = useScrollReveal({ threshold: 0.3 });
   const { ref: headingRef, isVisible: headingVisible } = useScrollReveal();
   const { ref: bodyRef, isVisible: bodyVisible } = useScrollReveal();
 
@@ -61,25 +59,6 @@ export default function AboutSection() {
           </div>
         </div>
 
-        {/* Stats Row */}
-        <div
-          ref={statsRef}
-          className={`mt-16 flex flex-col md:flex-row items-stretch border-y border-line bg-paper/60 py-10 ${
-            statsVisible ? 'scroll-reveal revealed' : 'scroll-reveal'
-          }`}
-        >
-          <div className="flex-1 px-4">
-            <StatCounter target={10} suffix="B+" label="Naira in Credit Facilitated" isVisible={statsVisible} />
-          </div>
-          <div className="hidden md:block w-px bg-line self-stretch" />
-          <div className="flex-1 px-4 py-8 md:py-0 border-y border-line md:border-y-0">
-            <StatCounter target={500} suffix="+" label="Clients Served" isVisible={statsVisible} />
-          </div>
-          <div className="hidden md:block w-px bg-line self-stretch" />
-          <div className="flex-1 px-4">
-            <StatCounter target={15} suffix="+" label="Years Combined Team Experience" isVisible={statsVisible} />
-          </div>
-        </div>
       </div>
     </section>
   );
