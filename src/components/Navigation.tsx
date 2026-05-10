@@ -88,13 +88,13 @@ export default function Navigation() {
     <>
       <nav
         className={`fixed top-0 left-0 right-0 z-50 h-[76px] transition-all duration-300 ${
-          scrolled ? 'bg-paper/90 backdrop-blur-md border-b border-line shadow-sm' : 'bg-paper/70 backdrop-blur-sm'
+          scrolled ? 'bg-darkbg/90 backdrop-blur-md border-b border-darkborder shadow-sm' : 'bg-darkbg/70 backdrop-blur-sm'
         }`}
         style={{ animation: 'nav-slide-down 400ms cubic-bezier(0.4, 0, 0.2, 1) forwards' }}
       >
         {/* Scroll Progress Bar */}
         <div
-          className="absolute top-0 left-0 h-[2px] bg-navy transition-[width] duration-150 ease-out z-[60]"
+          className="absolute top-0 left-0 h-[2px] bg-accentblue transition-[width] duration-150 ease-out z-[60] shadow-glow"
           style={{ width: `${scrollProgress}%` }}
         />
 
@@ -116,7 +116,7 @@ export default function Navigation() {
           <div ref={navContainerRef} className="hidden lg:flex items-center gap-1 relative">
             {/* Sliding active indicator */}
             <div
-              className="absolute top-1/2 -translate-y-1/2 h-[36px] rounded-full bg-navy/[0.06] pointer-events-none transition-all duration-300"
+              className="absolute top-1/2 -translate-y-1/2 h-[36px] rounded-full bg-accentblue/10 pointer-events-none transition-all duration-300 border border-accentblue/20 shadow-[0_0_10px_rgba(0,229,255,0.2)]"
               style={{
                 left: indicatorStyle.left,
                 width: indicatorStyle.width,
@@ -135,14 +135,14 @@ export default function Navigation() {
                   onClick={(e) => handleNavClick(e, link.href)}
                   className={`group relative font-sans text-[14px] px-4 py-2 rounded-full transition-colors duration-300 ${
                     isActive
-                      ? 'font-semibold text-navy'
-                      : 'font-medium text-charcoal/70 hover:text-navy'
+                      ? 'font-bold text-accentblue'
+                      : 'font-medium text-textmuted hover:text-textmain'
                   }`}
                 >
                   {link.label}
                   <span
-                    className={`absolute -bottom-0.5 left-1/2 -translate-x-1/2 h-[2px] rounded-full bg-navy transition-all duration-300 ${
-                      isActive ? 'w-5 opacity-100' : 'w-0 opacity-0 group-hover:w-3 group-hover:opacity-60'
+                    className={`absolute -bottom-0.5 left-1/2 -translate-x-1/2 h-[2px] rounded-full bg-accentblue transition-all duration-300 ${
+                      isActive ? 'w-5 opacity-100 shadow-glow' : 'w-0 opacity-0 group-hover:w-3 group-hover:opacity-60'
                     }`}
                   />
                 </a>
@@ -154,31 +154,31 @@ export default function Navigation() {
           <a
             href="#contact"
             onClick={(e) => handleNavClick(e, '#contact')}
-            className="hidden lg:inline-flex items-center rounded-full bg-navy text-white font-sans text-[14px] font-semibold px-6 py-2.5 shadow-sm shadow-navy/20 hover:bg-deepnavy hover:shadow-lg hover:shadow-navy/30 hover:-translate-y-0.5 transition-all duration-300"
+            className="hidden lg:inline-flex items-center rounded-full bg-accentblue text-darkbg font-sans text-[14px] font-bold px-6 py-2.5 shadow-glow hover:bg-accentpurple hover:shadow-[0_0_20px_rgba(138,43,226,0.6)] hover:-translate-y-0.5 transition-all duration-300"
           >
             Get in Touch
           </a>
 
           {/* Hamburger */}
           <button
-            className="lg:hidden flex w-10 h-10 flex-col items-center justify-center gap-[5px] rounded-full border border-line bg-paper cursor-pointer hover:bg-mist transition-colors duration-200"
+            className="lg:hidden flex w-11 h-11 flex-col items-center justify-center gap-[5px] rounded-full border border-deepnavy/25 bg-white shadow-sm cursor-pointer hover:bg-accentblue/5 hover:border-accentblue/50 transition-colors duration-200"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
             aria-expanded={isMenuOpen}
           >
             <span
-              className={`block h-[2px] w-5 bg-navy transition-all duration-300 ${
-                isMenuOpen ? 'rotate-45 translate-y-[7px]' : ''
+              className={`block h-[2px] w-5 bg-deepnavy transition-all duration-300 ${
+                isMenuOpen ? 'rotate-45 translate-y-[7px] bg-accentblue' : ''
               }`}
             />
             <span
-              className={`block h-[2px] w-5 bg-navy transition-all duration-300 ${
+              className={`block h-[2px] w-5 bg-deepnavy transition-all duration-300 ${
                 isMenuOpen ? 'opacity-0' : ''
               }`}
             />
             <span
-              className={`block h-[2px] w-5 bg-navy transition-all duration-300 ${
-                isMenuOpen ? '-rotate-45 -translate-y-[7px]' : ''
+              className={`block h-[2px] w-5 bg-deepnavy transition-all duration-300 ${
+                isMenuOpen ? '-rotate-45 -translate-y-[7px] bg-accentblue' : ''
               }`}
             />
           </button>
@@ -186,8 +186,8 @@ export default function Navigation() {
 
         {/* Mobile Menu */}
         <div
-          className={`lg:hidden absolute top-[76px] left-0 right-0 bg-paper/98 backdrop-blur-lg border-b border-line overflow-hidden shadow-card transition-all duration-400 ${
-            isMenuOpen ? 'max-h-[440px] opacity-100' : 'max-h-0 opacity-0'
+          className={`lg:hidden absolute top-[76px] left-0 right-0 bg-white backdrop-blur-xl border-b border-deepnavy/15 overflow-hidden shadow-[0_18px_40px_-12px_rgba(10,34,60,0.25)] transition-all duration-500 z-50 ${
+            isMenuOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'
           }`}
         >
           <div className="container-brahm py-6 flex flex-col gap-1">
@@ -196,10 +196,10 @@ export default function Navigation() {
                 key={link.href}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className={`font-sans text-[16px] py-3 px-4 rounded-xl transition-colors ${
+                className={`font-sans text-[16px] py-3 px-4 rounded-xl transition-all duration-300 ${
                   activeSection === link.href.slice(1)
-                    ? 'text-navy font-semibold bg-navy/[0.06]'
-                    : 'text-charcoal hover:text-navy hover:bg-navy/[0.04]'
+                    ? 'text-accentblue font-bold bg-accentblue/10 border border-accentblue/20'
+                    : 'text-textmain font-medium hover:text-accentblue hover:bg-accentblue/5 border border-transparent'
                 }`}
                 style={{
                   opacity: isMenuOpen ? 1 : 0,
@@ -213,10 +213,11 @@ export default function Navigation() {
             <a
               href="#contact"
               onClick={(e) => handleNavClick(e, '#contact')}
-              className="rounded-full bg-navy text-white font-sans text-[15px] font-semibold px-5 py-3.5 text-center hover:bg-deepnavy transition-colors duration-250 mt-3"
+              className="rounded-full bg-accentblue text-darkbg font-sans text-[15px] font-bold px-5 py-3.5 text-center shadow-glow hover:bg-accentpurple hover:shadow-[0_0_20px_rgba(138,43,226,0.6)] transition-all duration-300 mt-3"
               style={{
                 opacity: isMenuOpen ? 1 : 0,
-                transition: `opacity 300ms ease ${navLinks.length * 50}ms`,
+                transform: isMenuOpen ? 'translateY(0)' : 'translateY(-10px)',
+                transition: `all 300ms ease ${navLinks.length * 50}ms`,
               }}
             >
               Get in Touch
@@ -227,7 +228,7 @@ export default function Navigation() {
         {/* Overlay */}
         {isMenuOpen && (
           <div
-            className="lg:hidden fixed inset-0 top-[76px] bg-deepnavy/30 backdrop-blur-sm z-[-1] transition-opacity duration-300"
+            className="lg:hidden fixed inset-0 top-[76px] h-screen bg-darkbg/60 backdrop-blur-sm z-[-1] transition-opacity duration-300"
             onClick={() => setIsMenuOpen(false)}
             aria-hidden="true"
           />
