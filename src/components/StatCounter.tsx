@@ -12,10 +12,10 @@ export default function StatCounter({ target, suffix, label, isVisible }: StatCo
 
   return (
     <div className="text-center group">
-      <div className="font-serif text-[48px] text-navy transition-transform duration-300 group-hover:scale-105">
+      <div className="font-serif text-[44px] md:text-[48px] text-navy transition-transform duration-300 group-hover:scale-[1.03]">
         {displayValue}
       </div>
-      <div className="font-sans text-[14px] text-charcoal/68 mt-2 transition-colors duration-300 group-hover:text-charcoal/85">
+      <div className="font-sans text-[13px] text-charcoal/60 mt-3 uppercase tracking-[0.18em] font-semibold">
         {label}
       </div>
     </div>

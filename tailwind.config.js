@@ -20,6 +20,17 @@ module.exports = {
         lightgray: '#F1F3F5',
         line: '#D8DDE3',
         forest: '#0F3868',
+        // --- Light, professional palette (token names kept for compatibility) ---
+        darkbg: '#FFFFFF',                          // page surface
+        darksurface: '#F4F6F9',                     // subtle alt surface
+        darkglass: 'rgba(255, 255, 255, 0.72)',     // light glass / card
+        darkborder: 'rgba(15, 56, 104, 0.10)',      // soft navy-tinted border
+        accentblue: '#0F3868',                      // brand navy (was neon)
+        accentpurple: '#303850',                    // slate accent (was purple)
+        accentgold: '#B89456',                      // muted brass
+        textmain: '#171A1F',                        // primary text
+        textmuted: '#5C6776',                       // secondary text
+        // ---------------------------------
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -55,8 +66,8 @@ module.exports = {
         },
       },
       fontFamily: {
-        serif: ['"DM Serif Display"', 'Times', 'serif'],
-        sans: ['Manrope', '"Helvetica Neue"', 'sans-serif'],
+        serif: ['"Outfit"', 'sans-serif'],
+        sans: ['"Inter"', 'sans-serif'],
       },
       borderRadius: {
         xl: "calc(var(--radius) + 4px)",
@@ -67,10 +78,12 @@ module.exports = {
       },
       boxShadow: {
         xs: "0 1px 2px 0 rgb(10 34 60 / 0.06)",
-        hero: "0 28px 70px rgba(10,34,60,0.18)",
-        card: "0 14px 40px rgba(15,56,104,0.10)",
-        team: "0 18px 52px rgba(10,34,60,0.14)",
-        brand: "0 18px 55px rgba(15,56,104,0.13)",
+        hero: "0 28px 70px rgba(10,34,60,0.12)",
+        card: "0 14px 40px rgba(15,56,104,0.08)",
+        team: "0 18px 52px rgba(10,34,60,0.10)",
+        brand: "0 18px 55px rgba(15,56,104,0.10)",
+        glass: "0 10px 35px 0 rgba(15, 56, 104, 0.08)",
+        glow: "0 8px 28px rgba(15, 56, 104, 0.18)",
       },
       keyframes: {
         "accordion-down": {
@@ -97,6 +110,14 @@ module.exports = {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(8px)" },
         },
+        "float": {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
+        "pulse-glow": {
+          "0%, 100%": { opacity: "0.8", filter: "blur(20px)" },
+          "50%": { opacity: "1", filter: "blur(30px)" },
+        }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -105,7 +126,13 @@ module.exports = {
         "hero-fade-in": "hero-fade-in 500ms cubic-bezier(0.4, 0, 0.2, 1) 200ms forwards",
         "indicator-fade-in": "indicator-fade-in 300ms cubic-bezier(0.4, 0, 0.2, 1) 400ms forwards",
         "bounce-gentle": "bounce-gentle 2s ease-in-out infinite",
+        "float": "float 6s ease-in-out infinite",
+        "pulse-glow": "pulse-glow 4s ease-in-out infinite",
       },
+      backgroundImage: {
+        'glass-gradient': 'linear-gradient(135deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.55))',
+        'mesh-dark': 'radial-gradient(at 40% 20%, rgba(15,56,104,0.06) 0px, transparent 50%), radial-gradient(at 80% 0%, rgba(48,56,80,0.05) 0px, transparent 50%), radial-gradient(at 0% 70%, rgba(15,56,104,0.04) 0px, transparent 55%)',
+      }
     },
   },
   plugins: [require("tailwindcss-animate")],

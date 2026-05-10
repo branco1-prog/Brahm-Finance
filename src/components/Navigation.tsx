@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, type MouseEvent } from 'react';
+import { useState, useEffect, useCallback, useRef, type MouseEvent } from 'react';
 import BrandMark from '@/components/BrandMark';
 
 const navLinks = [
@@ -14,6 +14,10 @@ export default function Navigation() {
   const [activeSection, setActiveSection] = useState('');
   const [scrolled, setScrolled] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0, opacity: 0 });
+
+  const navContainerRef = useRef<HTMLDivElement>(null);
+  const navLinkRefs = useRef<(HTMLAnchorElement | null)[]>([]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,6 +51,25 @@ export default function Navigation() {
     return () => observer.disconnect();
   }, []);
 
+  // Smooth sliding indicator
+  useEffect(() => {
+    const activeIndex = navLinks.findIndex((link) => link.href.slice(1) === activeSection);
+    const activeLink = navLinkRefs.current[activeIndex];
+    const container = navContainerRef.current;
+
+    if (activeLink && container) {
+      const containerRect = container.getBoundingClientRect();
+      const linkRect = activeLink.getBoundingClientRect();
+      setIndicatorStyle({
+        left: linkRect.left - containerRect.left,
+        width: linkRect.width,
+        opacity: 1,
+      });
+    } else {
+      setIndicatorStyle((prev) => ({ ...prev, opacity: 0 }));
+    }
+  }, [activeSection]);
+
   const handleNavClick = useCallback(
     (e: MouseEvent<HTMLAnchorElement>, href: string) => {
       e.preventDefault();
@@ -65,7 +88,7 @@ export default function Navigation() {
     <>
       <nav
         className={`fixed top-0 left-0 right-0 z-50 h-[76px] transition-all duration-300 ${
-          scrolled ? 'bg-paper/95 backdrop-blur-md border-b border-line shadow-sm' : 'bg-paper/90'
+          scrolled ? 'bg-paper/90 backdrop-blur-md border-b border-line shadow-sm' : 'bg-paper/70 backdrop-blur-sm'
         }`}
         style={{ animation: 'nav-slide-down 400ms cubic-bezier(0.4, 0, 0.2, 1) forwards' }}
       >
@@ -83,31 +106,45 @@ export default function Navigation() {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }}
-            className="leading-none focus-visible:rounded-md"
+            className="leading-none focus-visible:rounded-md transition-transform hover:scale-[1.02] duration-300"
             aria-label="Brahm Finance home"
           >
             <BrandMark />
           </a>
 
           {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center gap-1">
-            {navLinks.map((link) => {
+          <div ref={navContainerRef} className="hidden lg:flex items-center gap-1 relative">
+            {/* Sliding active indicator */}
+            <div
+              className="absolute top-1/2 -translate-y-1/2 h-[36px] rounded-full bg-navy/[0.06] pointer-events-none transition-all duration-300"
+              style={{
+                left: indicatorStyle.left,
+                width: indicatorStyle.width,
+                opacity: indicatorStyle.opacity,
+                transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
+              }}
+            />
+
+            {navLinks.map((link, index) => {
               const isActive = activeSection === link.href.slice(1);
               return (
                 <a
                   key={link.href}
+                  ref={(el) => { navLinkRefs.current[index] = el; }}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.href)}
-                  className={`relative font-sans text-[14px] px-4 py-2 rounded-md transition-all duration-300 ${
+                  className={`group relative font-sans text-[14px] px-4 py-2 rounded-full transition-colors duration-300 ${
                     isActive
-                      ? 'font-semibold text-navy bg-navy/6'
-                      : 'font-normal text-charcoal/75 hover:text-navy hover:bg-navy/4'
+                      ? 'font-semibold text-navy'
+                      : 'font-medium text-charcoal/70 hover:text-navy'
                   }`}
                 >
                   {link.label}
-                  {isActive && (
-                    <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-4 h-[2px] bg-navy rounded-full" />
-                  )}
+                  <span
+                    className={`absolute -bottom-0.5 left-1/2 -translate-x-1/2 h-[2px] rounded-full bg-navy transition-all duration-300 ${
+                      isActive ? 'w-5 opacity-100' : 'w-0 opacity-0 group-hover:w-3 group-hover:opacity-60'
+                    }`}
+                  />
                 </a>
               );
             })}
@@ -117,14 +154,14 @@ export default function Navigation() {
           <a
             href="#contact"
             onClick={(e) => handleNavClick(e, '#contact')}
-            className="hidden lg:inline-flex items-center rounded-md bg-navy text-white font-sans text-[14px] px-5 py-3 shadow-xs hover:bg-deepnavy hover:shadow-md hover:-translate-y-0.5 transition-all duration-250"
+            className="hidden lg:inline-flex items-center rounded-full bg-navy text-white font-sans text-[14px] font-semibold px-6 py-2.5 shadow-sm shadow-navy/20 hover:bg-deepnavy hover:shadow-lg hover:shadow-navy/30 hover:-translate-y-0.5 transition-all duration-300"
           >
             Get in Touch
           </a>
 
           {/* Hamburger */}
           <button
-            className="lg:hidden flex w-10 h-10 flex-col items-center justify-center gap-[5px] rounded-md border border-line bg-paper cursor-pointer hover:bg-mist transition-colors duration-200"
+            className="lg:hidden flex w-10 h-10 flex-col items-center justify-center gap-[5px] rounded-full border border-line bg-paper cursor-pointer hover:bg-mist transition-colors duration-200"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
             aria-expanded={isMenuOpen}
@@ -150,7 +187,7 @@ export default function Navigation() {
         {/* Mobile Menu */}
         <div
           className={`lg:hidden absolute top-[76px] left-0 right-0 bg-paper/98 backdrop-blur-lg border-b border-line overflow-hidden shadow-card transition-all duration-400 ${
-            isMenuOpen ? 'max-h-[400px] opacity-100' : 'max-h-0 opacity-0'
+            isMenuOpen ? 'max-h-[440px] opacity-100' : 'max-h-0 opacity-0'
           }`}
         >
           <div className="container-brahm py-6 flex flex-col gap-1">
@@ -159,10 +196,10 @@ export default function Navigation() {
                 key={link.href}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className={`font-sans text-[16px] py-3 px-4 rounded-md transition-colors ${
+                className={`font-sans text-[16px] py-3 px-4 rounded-xl transition-colors ${
                   activeSection === link.href.slice(1)
-                    ? 'text-navy font-semibold bg-navy/6'
-                    : 'text-charcoal hover:text-navy hover:bg-navy/4'
+                    ? 'text-navy font-semibold bg-navy/[0.06]'
+                    : 'text-charcoal hover:text-navy hover:bg-navy/[0.04]'
                 }`}
                 style={{
                   opacity: isMenuOpen ? 1 : 0,
@@ -176,7 +213,7 @@ export default function Navigation() {
             <a
               href="#contact"
               onClick={(e) => handleNavClick(e, '#contact')}
-              className="rounded-md bg-navy text-white font-sans text-[14px] px-5 py-3 text-center hover:bg-deepnavy transition-colors duration-250 mt-3"
+              className="rounded-full bg-navy text-white font-sans text-[15px] font-semibold px-5 py-3.5 text-center hover:bg-deepnavy transition-colors duration-250 mt-3"
               style={{
                 opacity: isMenuOpen ? 1 : 0,
                 transition: `opacity 300ms ease ${navLinks.length * 50}ms`,
@@ -190,7 +227,7 @@ export default function Navigation() {
         {/* Overlay */}
         {isMenuOpen && (
           <div
-            className="lg:hidden fixed inset-0 top-[76px] bg-deepnavy/40 backdrop-blur-sm z-[-1] transition-opacity duration-300"
+            className="lg:hidden fixed inset-0 top-[76px] bg-deepnavy/30 backdrop-blur-sm z-[-1] transition-opacity duration-300"
             onClick={() => setIsMenuOpen(false)}
             aria-hidden="true"
           />

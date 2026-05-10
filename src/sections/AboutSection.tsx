@@ -7,8 +7,12 @@ export default function AboutSection() {
   const { ref: bodyRef, isVisible: bodyVisible } = useScrollReveal();
 
   return (
-    <section id="about" className="bg-cream section-padding">
-      <div className="container-brahm">
+    <section id="about" className="relative bg-cream section-padding overflow-hidden">
+      {/* Soft brand-tinted background blobs */}
+      <div className="absolute -top-32 right-0 w-[480px] h-[480px] bg-navy/[0.04] rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute -bottom-40 -left-24 w-[400px] h-[400px] bg-slatebrand/[0.04] rounded-full blur-[120px] pointer-events-none" />
+
+      <div className="container-brahm relative z-10">
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-16">
           {/* Left Column */}
           <div className="w-full lg:w-1/2">
@@ -16,9 +20,12 @@ export default function AboutSection() {
               ref={headingRef}
               className={headingVisible ? 'scroll-reveal revealed' : 'scroll-reveal'}
             >
-              <span className="mb-5 block h-[2px] w-16 bg-navy" />
-              <h2 className="text-charcoal">Building Trust with Our Services</h2>
-              <h4 className="text-navy mt-4">Licensed. Disciplined. Committed to Impact.</h4>
+              <span className="mb-5 block h-[2px] w-14 bg-navy" />
+              <p className="font-sans text-[12px] font-semibold uppercase tracking-[0.24em] text-navy/75 mb-4">
+                About Brahm Finance
+              </p>
+              <h2 className="text-charcoal">Building a more responsive credit market.</h2>
+              <h4 className="text-navy mt-5 font-normal">Licensed. Disciplined. Built for impact.</h4>
             </div>
           </div>
 
@@ -28,22 +35,36 @@ export default function AboutSection() {
             className={`w-full lg:w-1/2 ${bodyVisible ? 'scroll-reveal revealed' : 'scroll-reveal'}`}
             style={{ transitionDelay: '150ms' }}
           >
-            <p className="font-sans text-[18px] text-charcoal/78 leading-[1.75] mb-5">
-              Brahm Finance Limited is a private credit and lending firm focused on providing flexible capital solutions to underserved individuals, SMEs, and mid-market businesses in Nigeria. Established to bridge the persistent funding gap, we provide timely, flexible, and structured credit solutions that support business growth, working capital needs, and short-term liquidity requirements.
+            <p className="font-sans text-[18px] text-charcoal/76 leading-[1.75] mb-5">
+              Brahm Finance is a private credit and lending firm built to close the funding gap that holds back individuals, SMEs, and mid-market businesses across Nigeria. We provide structured, timely capital for working-capital needs, expansion plans, and short-term liquidity.
             </p>
-            <p className="font-sans text-[18px] text-charcoal/78 leading-[1.75] mb-5">
-              Our approach combines speed of execution with disciplined risk assessment, enabling us to provide efficient access to capital while maintaining strong credit quality. We partner closely with our clients, offering not just funding, but strategic insight that helps them navigate financial challenges and unlock value.
+            <p className="font-sans text-[18px] text-charcoal/76 leading-[1.75] mb-5">
+              Our approach pairs the speed founders actually need with the credit discipline institutions expect. We move quickly, but never carelessly — every facility is structured around real cash flow, real collateral, and a clear path to repayment.
             </p>
-            <p className="font-sans text-[18px] text-charcoal/78 leading-[1.75]">
-              Driven by deep capital markets expertise and a strong understanding of Nigeria's financial landscape, we are committed to building a trusted lending platform anchored on integrity, innovation, and impact.
+            <p className="font-sans text-[18px] text-charcoal/76 leading-[1.75]">
+              Backed by deep capital-markets experience, we are building a lending platform clients return to — anchored on integrity, executed with rigor, and measured by the impact our capital unlocks.
             </p>
+            <div className="grid gap-4 sm:grid-cols-2 mt-9">
+              <div className="rounded-2xl border border-line bg-paper p-6 transition-all duration-300 hover:border-navy/30 hover:shadow-card hover:-translate-y-1">
+                <h5 className="text-[17px] font-semibold text-charcoal">Clear financing terms</h5>
+                <p className="mt-3 text-[15px] text-charcoal/70 leading-[1.65]">
+                  Structured proposals so approval decisions are simple, predictable, and built around your operations.
+                </p>
+              </div>
+              <div className="rounded-2xl border border-line bg-paper p-6 transition-all duration-300 hover:border-navy/30 hover:shadow-card hover:-translate-y-1">
+                <h5 className="text-[17px] font-semibold text-charcoal">Rapid, disciplined execution</h5>
+                <p className="mt-3 text-[15px] text-charcoal/70 leading-[1.65]">
+                  Practical execution backed by a rigorous risk framework — speed without short-cuts.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Stats Row */}
         <div
           ref={statsRef}
-          className={`mt-14 flex flex-col md:flex-row items-stretch border-y border-line bg-paper/55 py-10 ${
+          className={`mt-16 flex flex-col md:flex-row items-stretch border-y border-line bg-paper/60 py-10 ${
             statsVisible ? 'scroll-reveal revealed' : 'scroll-reveal'
           }`}
         >
@@ -51,7 +72,7 @@ export default function AboutSection() {
             <StatCounter target={10} suffix="B+" label="Naira in Credit Facilitated" isVisible={statsVisible} />
           </div>
           <div className="hidden md:block w-px bg-line self-stretch" />
-          <div className="flex-1 px-4 py-8 md:py-0">
+          <div className="flex-1 px-4 py-8 md:py-0 border-y border-line md:border-y-0">
             <StatCounter target={500} suffix="+" label="Clients Served" isVisible={statsVisible} />
           </div>
           <div className="hidden md:block w-px bg-line self-stretch" />

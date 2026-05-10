@@ -4,7 +4,7 @@ import SectionHeading from '@/components/SectionHeading';
 const coreProducts = [
   {
     number: '01',
-    title: 'Retail / Consumer Credit',
+    title: 'Retail & Consumer Credit',
     items: [
       'Asset-backed consumer loans (vehicles, electronics)',
       'Buy-now-pay-later (BNPL) structures',
@@ -12,23 +12,23 @@ const coreProducts = [
   },
   {
     number: '02',
-    title: 'SME / MSME Lending',
+    title: 'SME & MSME Lending',
     items: [
-      'Working capital loans (inventory financing, trade cycles)',
-      'Invoice discounting / receivables financing',
-      'Contract financing (government contractors)',
-      'Equipment / asset finance (leasing structures)',
-      'Cluster/group lending (market women, cooperatives)',
+      'Working capital loans (inventory, trade cycles)',
+      'Invoice discounting & receivables financing',
+      'Contract financing for government contractors',
+      'Equipment & asset finance via leasing',
+      'Cluster lending for cooperatives and market traders',
     ],
   },
   {
     number: '03',
     title: 'Secured & Structured Credit',
-    subtitle: '(Private Credit Focus)',
+    subtitle: 'Private credit focus',
     items: [
-      'Collateralised loans (real estate, treasury assets, shares)',
+      'Collateralised loans (real estate, treasury, shares)',
       'Bridge financing',
-      'Project-based lending (real estate, infrastructure-lite)',
+      'Project-based lending (real estate, infrastructure)',
       'Debt restructuring & refinancing solutions',
     ],
   },
@@ -36,28 +36,28 @@ const coreProducts = [
 
 const specialized = [
   {
-    title: 'Corporate & Institutional Lending',
+    title: 'Corporate & Institutional',
     items: [
-      'Short-term corporate loans (3\u201312 months)',
+      'Short-term corporate loans (3–12 months)',
       'Commercial paper participation',
-      'Syndicated lending (co-lending)',
+      'Syndicated co-lending arrangements',
       'Off-balance-sheet financing structures',
     ],
   },
   {
-    title: 'Public Sector & Government Linked',
+    title: 'Public Sector & Government',
     items: [
-      'State/agency contractor financing',
+      'State and agency contractor financing',
       'IGR-backed financing structures',
     ],
   },
   {
-    title: 'Niche Lending',
+    title: 'Sector-Specific',
     items: [
       'Agriculture value-chain financing',
-      'Healthcare financing (HMO receivables, equipment)',
-      'Education financing (school fees, institutional)',
-      'Renewable energy / solar asset financing',
+      'Healthcare (HMO receivables, equipment)',
+      'Education (school fees, institutional)',
+      'Renewable energy & solar asset financing',
     ],
   },
 ];
@@ -68,42 +68,46 @@ export default function ProductsSection() {
   const { ref: specHeadingRef, isVisible: specHeadingVisible } = useScrollReveal();
 
   return (
-    <section id="products" className="bg-cream section-padding">
-      <div className="container-brahm">
+    <section id="products" className="bg-cream section-padding relative overflow-hidden">
+      {/* Soft accent washes */}
+      <div className="absolute top-[20%] -left-20 w-[40vw] h-[40vw] bg-navy/[0.04] rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-[10%] -right-20 w-[35vw] h-[35vw] bg-slatebrand/[0.04] rounded-full blur-[120px] pointer-events-none" />
+
+      <div className="container-brahm relative z-10">
         <SectionHeading
-          title="Core Lending Products"
-          subtitle="We offer a comprehensive suite of lending products designed to meet diverse financing needs across the Nigerian market."
+          title="Core lending products"
+          subtitle="A comprehensive suite of credit products designed around how Nigerian businesses actually operate."
         />
 
         {/* Core Products Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-7">
           {coreProducts.map((product, index) => (
             <div
               key={product.number}
               ref={setProductRef(index)}
-              className={`group relative rounded-lg border border-line bg-paper p-8 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-card md:p-10 overflow-hidden ${
+              className={`group relative rounded-2xl border border-line bg-paper p-8 md:p-10 transition-all duration-300 hover:-translate-y-1 hover:border-navy/40 hover:shadow-card overflow-hidden ${
                 productVisible[index] ? 'scroll-reveal revealed' : 'scroll-reveal'
               }`}
-              style={{ transitionDelay: `${index * 150}ms` }}
+              style={{ transitionDelay: `${index * 120}ms` }}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-navy/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-              
-              <div className="relative">
-                <div className="mb-7 h-[3px] w-16 bg-navy transition-all duration-500 group-hover:w-20" />
-                <span className="font-serif text-[48px] text-navy/20 transition-colors duration-500 group-hover:text-navy/35">
+              <div className="absolute inset-0 bg-gradient-to-br from-navy/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+              <div className="relative z-10">
+                <div className="mb-7 h-[3px] w-12 bg-navy rounded-full transition-all duration-500 group-hover:w-16" />
+                <span className="font-serif text-[52px] leading-none text-navy/15 transition-colors duration-500 group-hover:text-navy/30">
                   {product.number}
                 </span>
-                <h4 className="text-charcoal mt-3 transition-colors duration-300 group-hover:text-navy">
+                <h4 className="text-charcoal mt-2 transition-colors duration-300 group-hover:text-navy">
                   {product.title}
                 </h4>
                 {product.subtitle && (
-                  <p className="font-sans text-[14px] italic text-charcoal/60 mt-1">{product.subtitle}</p>
+                  <p className="font-sans text-[13px] uppercase tracking-[0.18em] text-charcoal/55 mt-2 font-medium">{product.subtitle}</p>
                 )}
                 <ul className="mt-6 space-y-3">
                   {product.items.map((item) => (
                     <li key={item} className="flex items-start gap-3 group/item">
-                      <span className="w-[6px] h-[6px] rounded-full bg-navy mt-2.5 shrink-0 transition-all duration-300 group-hover/item:scale-125 group-hover/item:bg-deepnavy" />
-                      <span className="font-sans text-[16px] text-charcoal/76 transition-colors duration-300 group-hover/item:text-charcoal">
+                      <span className="w-[6px] h-[6px] rounded-full bg-navy mt-2.5 shrink-0 transition-all duration-300 group-hover/item:scale-125" />
+                      <span className="font-sans text-[15.5px] text-charcoal/74 leading-[1.55] transition-colors duration-300 group-hover/item:text-charcoal">
                         {item}
                       </span>
                     </li>
@@ -117,32 +121,33 @@ export default function ProductsSection() {
         {/* Specialized Solutions */}
         <div
           ref={specHeadingRef}
-          className={`mt-20 ${specHeadingVisible ? 'scroll-reveal revealed' : 'scroll-reveal'}`}
+          className={`mt-24 ${specHeadingVisible ? 'scroll-reveal revealed' : 'scroll-reveal'}`}
         >
-          <h3 className="text-charcoal text-center mb-12">Specialized Credit Solutions</h3>
+          <h3 className="text-charcoal text-center mb-3">Specialized credit solutions</h3>
+          <p className="font-sans text-[16px] text-charcoal/65 text-center max-w-[560px] mx-auto leading-[1.65] mb-12">
+            Sector-aware structures for institutions, the public sector, and high-impact verticals.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-7">
           {specialized.map((spec, index) => (
             <div
               key={spec.title}
               ref={setSpecRef(index)}
-              className={`group relative rounded-lg border border-line bg-paper p-8 shadow-xs transition-all duration-300 hover:-translate-y-1 hover:shadow-card hover:border-navy/30 md:p-9 overflow-hidden ${
+              className={`group rounded-2xl border border-line bg-paper p-7 md:p-8 transition-all duration-300 hover:-translate-y-1 hover:border-navy/40 hover:shadow-card overflow-hidden ${
                 specVisible[index] ? 'scroll-reveal revealed' : 'scroll-reveal'
               }`}
               style={{ transitionDelay: `${index * 100}ms` }}
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-navy/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-              
               <div className="relative">
-                <h5 className="text-charcoal transition-colors duration-300 group-hover:text-navy">
+                <h5 className="text-charcoal font-semibold text-[17px] transition-colors duration-300 group-hover:text-navy">
                   {spec.title}
                 </h5>
-                <ul className="mt-6 space-y-3">
+                <ul className="mt-5 space-y-2.5">
                   {spec.items.map((item) => (
                     <li key={item} className="flex items-start gap-3 group/item">
-                      <span className="w-[6px] h-[6px] rounded-full bg-navy mt-2.5 shrink-0 transition-all duration-300 group-hover/item:scale-125" />
-                      <span className="font-sans text-[14px] text-charcoal/76 transition-colors duration-300 group-hover/item:text-charcoal">
+                      <span className="w-[5px] h-[5px] rounded-full bg-navy/70 mt-2.5 shrink-0 transition-all duration-300 group-hover/item:scale-125 group-hover/item:bg-navy" />
+                      <span className="font-sans text-[14.5px] text-charcoal/74 leading-[1.55] transition-colors duration-300 group-hover/item:text-charcoal">
                         {item}
                       </span>
                     </li>
